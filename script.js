@@ -23,3 +23,6 @@ var mouseLeft = 500;
 
  
 
+        function openCurtain(){
+          var curtainsLeft = $("")
+        }

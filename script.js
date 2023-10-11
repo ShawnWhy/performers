@@ -29,6 +29,13 @@ var cups = [
 
 ]
 
+var cardNumber = 1;
+var pickedCards = {
+  1: { "title": "", "reverse": false },
+  2: { "title": "", "reverse": false },
+  3: { "title": "", "reverse": false },
+};
+
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
@@ -83,10 +90,32 @@ function createCards(){
       $(card).attr("data",cards[i])
       $(card).css("transform", "rotate(" + (angle * parseFloat(i)-100) + "deg)");
       $("body").append(card);
-    }, 50*i);
+    }, 10*i);
 
 
   }
+}
+
+function takeAwayCards() {
+ var Tcards = $(".Tcard");
+ Tcards.each(function (index, value) {
+   // console.log(left)
+
+   setTimeout(() => {
+     $(value).css(
+       "transform",
+       "rotate(0deg)"
+     );
+   }, index * 10);
+   console.log(Tcards.length)
+   if(index>=Tcards.length-1){
+    setTimeout(() => {
+          Tcards.remove();
+
+    }, 1000);
+   }
+ });
+
 }
 
 
@@ -100,7 +129,66 @@ $(".pullyWheel").click(function (e) {
   
 })
 
+$("body").on("click",".Tcard", e=>{
+  e.stopPropagation();
+  e.preventDefault();
+  console.log(e); 
+  if(cardNumber<=3){
+ var information = $(e.target).attr("data")
+ 
+  pickCards(information,cardNumber)
+      if (cardNumber==3){
+        takeAwayCards();
+          setTimeout(() => {
+            placeCards();
+          }, 500);
+      } cardNumber++;
+    
+    $(e.target).addClass("cardRemoved");
+    setTimeout(() => {
+      $(e.target).remove();
+    }, 300);
 
+  } 
+
+})
+
+
+function pickCards(information, number){
+
+  pickedCards[number]["title"]=information;
+
+  var rand = Math.floor(Math.random()*2)
+  if(rand ==1){
+    pickedCards[number]["reverse"]=true
+  }
+  else{
+     pickedCards[number]["reverse"] = false;
+
+  }
+console.log(cardNumber)
+  console.log(pickedCards);
+
+}
+
+function placeCards(){
+  console.log("placecards")
+  for(i=1;i<=3;i++){
+    
+      let flippedCard = $("<div>");
+      $(flippedCard).addClass("TcardShow");
+      console.log(pickedCards[1]["title"]);
+      console.log(i);
+      $(flippedCard).html(pickedCards[i]["title"]);
+      if (pickedCards[i]["reverse"]) {
+        $(flippedCard).css("transform", "rotate(180deg)");
+      }
+      setTimeout(() => {
+        $(".TcardShowRow").append(flippedCard);
+      }, 200 * i);
+
+  }
+}
 
 
 var treeColor = "cadetBlue";

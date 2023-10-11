@@ -199,3 +199,49 @@ left:0% ! important;
     height:320px;
     width:160px;
 }
+
+.cardRemoved{
+    animation: cardRemove .3s both; 
+}
+
+@keyframes cardRemove {
+    0%{    height:320px;
+    width:160px;
+    opacity: 100%;}
+    100%{
+    top:calc(40% - 190px);
+
+        height:340px;
+    width:170px;
+    opacity: 5%;
+    }
+    
+}
+
+.TcardShow{
+    position:relative;
+    height:300px;
+    width:150px;
+    border-radius:12px;
+    background-color:rgb(166, 166, 202);
+    transform-origin: center;
+    border:5px rgb(162, 139, 139) solid;
+        animation:topDrop .5s both;
+
+
+}
+
+.TcardShowRow{
+    width:100%;
+    position:absolute;
+    top:40%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+@keyframes topDrop {
+    0%{left:-200px}
+    100%{left:0px}
+    
+}

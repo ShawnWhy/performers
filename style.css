@@ -192,3 +192,10 @@ left:0% ! important;
     left:calc(50% - 75px);
     top:calc(40% - 150px);
 }
+
+.Tcard:hover{
+    top:calc(40% - 170px);
+
+    height:320px;
+    width:160px;
+}

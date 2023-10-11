@@ -71,7 +71,7 @@ function createCards(){
   var cards = majorArcana.concat(swords).concat(wands).concat(pentacle).concat(cups)
   shuffleArray(cards);
   console.log(cards)
- var angle = 180 / parseInt(cards.length);
+ var angle = 220 / parseInt(cards.length);
 
   for(let i=0; i<cards.length;i++){
     setTimeout(() => {
@@ -81,7 +81,7 @@ function createCards(){
       var card = $("<div>");
       $(card).addClass("Tcard");
       $(card).attr("data",cards[i])
-      $(card).css("transform", "rotate(" + (angle * parseFloat(i)-90) + "deg)");
+      $(card).css("transform", "rotate(" + (angle * parseFloat(i)-100) + "deg)");
       $("body").append(card);
     }, 50*i);
 

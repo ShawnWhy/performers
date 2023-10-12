@@ -227,6 +227,7 @@ left:0% ! important;
     transform-origin: center;
     border:5px rgb(162, 139, 139) solid;
         animation:topDrop .5s both;
+        pointer-events: all;
 
 
 }
@@ -238,6 +239,7 @@ left:0% ! important;
     display:flex;
     flex-direction: row;
     justify-content: space-around;
+    pointer-events: none;
 }
 
 @keyframes topDrop {
@@ -245,3 +247,19 @@ left:0% ! important;
     100%{left:0px}
     
 }
+
+.inputRow{
+    width:100%;
+    top:30%;
+    display:flex;
+    position:absolute;
+}
+
+.queryInput{
+    width:80%;
+    height:50px;
+    margin:auto;
+    position:relative;
+    padding:20px;
+}
+

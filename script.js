@@ -29,6 +29,8 @@ var cups = [
 
 ]
 
+var curtain = "closed"
+
 var cardNumber = 1;
 var pickedCards = {
   1: { "title": "", "reverse": false },
@@ -46,7 +48,8 @@ function shuffleArray(array) {
 }
 
 function openCurtain() {
-
+  curtain="open";
+  $(".inputRow").css("display","none")  
   $(".pullyWheel").addClass("rotateWheel");
   setTimeout(() => {
       $(".pullyWheel").removeClass("rotateWheel");
@@ -118,12 +121,56 @@ function takeAwayCards() {
 
 }
 
+function closeCurtain() {
+cardNumber=1;
+
+  $(".Tcard").remove();
+  $(".TcardShow").remove();
+  curtain="closed"
+  $(".pullyWheel").addClass("rotateWheel");
+  setTimeout(() => {
+    $(".pullyWheel").removeClass("rotateWheel");
+  }, 1600);
+  // console.log("opencurtain");
+  var leftCurtains = $(".curtainLeft .curtain");
+  console.log(leftCurtains);
+  leftCurtains.each(function (index, value) {
+    // console.log(left)
+
+    setTimeout(() => {
+      $(value).removeClass("closedCurtainLeft");
+    }, index * 400);
+  });
+
+  var rightCurtains = $(".curtainRight .curtain");
+  rightCurtains.each(function (index, value) {
+    // console.log(left)
+
+    setTimeout(() => {
+      $(value).removeClass("closedCurtainRight");
+    }, index * 400);
+  });
+
+
+  setTimeout(() => {
+      $(".inputRow").css("display", "flex");
+  
+  }, 1500);
+}
+
 
 
 $(".pullyWheel").click(function (e) { 
+  if(curtain =="closed"){
   openCurtain();
   console.log("openWheel");
   e.preventDefault();
+  }
+  else{
+    closeCurtain()
+  }
+
+
 
 
   
@@ -214,7 +261,14 @@ var mouseLeft = 500;
         ")";
 
 
+$(".inputRow").submit(e=>{
+  e.preventDefault();
+  e.stopPropagation();
+    if(curtain =="closed"){
 
+  openCurtain()
+    }
+})
 
  
 
